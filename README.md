@@ -6,7 +6,7 @@ FFAD (Functional Flow Artifact Diagram) is a semi-formal diagram designed to des
 ## What constitutes an FFAD?
 FFAD (Functional Flow Artifact Diagram) is a semi-formal diagram that shows how functions exchange explicit artifacts (data, energy, materials) via acyclic forward flows and explicit feedback channels, bridging functional and contextual modeling across disciplines. FFADs integrate functional flows with explicit artifact exchanges. In an FFAD, each block represents a function or capability (a noun phrase describing what the system does), and each directed arrow represents a flow labeled with both a verb and the artifact being produced, consumed, or reported (e.g., provides map, issues motor commands, reports status). Subgraphs group related functions into higher-level capabilities or contexts. Forward flows (e.g., provides, issues, powers, replenishes) are acyclic, while feedback flows (e.g., reports X) are explicitly distinguished. FFADs make visible not only the sequence of functions but also the tangible data, material, or energy artifacts exchanged across multidisciplinary boundaries, providing a lightweight, accessible, and domain-agnostic complement to notations such as SysML, UML, FFBD, and DDD context maps.
 
-## Show me examples
+## FFAD Examples
 
 ### Robot vaccum cleaner
 ``` mermaid
@@ -117,13 +117,48 @@ style AnalyticsandReporting fill:#777777,stroke:black
 ```
 
 ## Creating an FFAD
-To make it easy for you to use FFADs, here is a custom GPT you can use (free to use) to generate mermaid code for an FFAD. 
+To make it easy for you to use FFADs, here is a custom GPT you can use (free to use) to generate mermaid code for an FFAD. [FFAD Creator AI Tool](https://chatgpt.com/g/g-68b180139a048191b5790ba8c9b4a48f-ffad-functional-flow-artifact-diagram-creator)
+
+Here are steps to create it more methodically, manually. 
+
+#### Step 1. Clarify the system
+Write a one-sentence problem statement, e.g. "A robot vacuum cleaner must sense its environment, build a map, plan paths, actuate cleaning, and maintain power."
+
+#### Step 2. Identify capabilities
+List 6-10 top-level functional areas. Example: Sensing, Localization Mapping, Planning, Actuation, Power, User Interface, Maintenance, Docking. These become subgraphs.
+
+#### Step 3. Identify artifacts
+Within each capability, list the core artifacts/components it owns. Example: Sensing owns Observations, Planning owns Commands. These become nodes inside subgraphs.
+
+#### Step 4. Define forward flows
+Decide what artifacts move forward and who consumes them. Phrase each as: [Source] provides [artifact] → [Target]. This becomes your acyclic backbone.
+
+#### Step 5. Define feedback flows
+Add telemetry, monitoring, and reporting. Phrase as: [Source] reports [artifact] → [Target]. These are the feedback channels that close the loop without breaking acyclicity.
+
+#### Step 6. Prune and check
+Every artifact must have one owner.
+No redundant arrows.
+No merged noun+verb blocks.
+Forward path is acyclic.
+Feedback is only via reports.
+
+#### Step 7. Render in Mermaid
+Capabilities → subgraphs
+Artifacts → nodes inside subgraphs
+Interactions → arrows labeled verb + artifact
+
+#### Step 8. Validate with scenarios
+Walk through 2-3 use cases (e.g., "Clean room", "Return to dock") to confirm the diagram covers all flows.
+
+## FFAD specification
+Please review the draft specification at [ffad-spec](https://github.com/go-donew/ffad/blob/main/ffad-spec/ffad-spec.md)
 
 ## Report an issue or a request
 For issues or feature requests in the custom GPT or in the spec, please open a new issue in the Issues section of this repository. In case of any other questions, lease email us at ffad@godonew.com
 
 ## Acknowledgement of AI Use
-While the authors have been using this format earlier, the inspiration to turn it into a specification came from AI's ability to generate code, especially Mermaid diagrams. This is what powers the AI powered FFAD creator tool (CustomGPT in OpenAI). While everything presented here are entirely the work of the authors, we acknowledge using an AI language model to help polish language, streamline structure, and explore alternative expressions. Any AI-generated text has been carefully reviewed, edited, and approved by the authors to ensure accuracy, clarity, and consistency with our scholarly intent.
+While the authors have been using this format earlier, the inspiration to turn it into a specification came from AI's ability to generate code, especially Mermaid diagrams. This is what powers the AI powered FFAD creator tool. While everything presented here are entirely the work of the authors, we acknowledge using an AI language model to help polish language, streamline structure, and explore alternative expressions. Any AI-generated text has been carefully reviewed, edited, and approved by the authors to ensure accuracy, clarity, and consistency with our scholarly intent.
 
 ## License
 Functional Flow Artifact Diagram (FFAD)
@@ -146,16 +181,16 @@ Full license text: https://creativecommons.org/licenses/by/4.0/
 If you use or reference the FFAD specification in research, documentation, or tools, you must provide attribution.
 
 1. Always include the full project name: Functional Flow Artifact Diagram (FFAD) Specification
-2. Credit the author(s) or organization: © 2025 [Your Name / Organization]
+2. Credit the author(s) or organization: © 2025 DoNew Innovations
 3. Include the license: CC BY 4.0
 4. Provide a link to the official repository or spec release.
-5. If adapted or modified, explicitly state: “Adapted from…”
+5. If adapted or modified, explicitly state: "Adapted from…"
 
 In text:
-“This work builds on the Functional Flow Artifact Diagram (FFAD) Specification © 2025 DoNew Innovations, licensed under CC BY 4.0.”
+"This work builds on the Functional Flow Artifact Diagram (FFAD) Specification © 2025 DoNew Innovations, licensed under CC BY 4.0."
 
 In a figure caption:
-“Diagram adapted from FFAD Specification, © 2025 DoNew Innovations, CC BY 4.0.”
+"Diagram adapted from FFAD Specification, © 2025 DoNew Innovations, CC BY 4.0."
 
 In academic papers:
 - DoNew Innovations (2025). Functional Flow Artifact Diagram (FFAD) Specification, Version 1.0. Available at [https://github.com/go-donew/ffad](https://github.com/go-donew/ffad). Licensed under CC BY 4.0.
