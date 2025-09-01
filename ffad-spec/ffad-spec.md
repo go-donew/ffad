@@ -60,8 +60,8 @@ In contrast, FFAD explicitly integrates function and artifact in one semi-formal
 
 graph TD
 
-subgraph Plan
-  Planner
+subgraph Planning
+  SLAM
 end
 
 subgraph Action
@@ -69,11 +69,11 @@ subgraph Action
   Sensing
 end
 
-Planner -- issues motor commands --> Actuation
+Planning -- issues motor commands --> Actuation
 Actuation -- reports odometry --> Sensing
-Sensing -- provides observations --> Planner
+Sensing -- provides observations --> Planning
 
-style Plan fill:#777777,stroke:black
+style Planning fill:#777777,stroke:black
 style Action fill:#777777,stroke:black
 ```
 
