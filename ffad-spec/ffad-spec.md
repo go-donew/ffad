@@ -60,21 +60,33 @@ In contrast, FFAD explicitly integrates function and artifact in one semi-formal
 
 graph TD
 
-subgraph Planning
-  SLAM
+subgraph Control
+Planner
+Navigator
 end
 
-subgraph Action
-  Actuation
-  Sensing
+subgraph Actuation
+DriveSystem
+BrushSystem
 end
 
-Planning -- issues motor commands --> Actuation
-Actuation -- reports odometry --> Sensing
-Sensing -- provides observations --> Planning
+subgraph Perception
+Sensors
+end
 
-style Planning fill:#777777,stroke:black
-style Action fill:#777777,stroke:black
+subgraph Environment
+FloorSurface
+end
+
+Planner -- issues path --> Navigator
+Navigator -- issues motor commands --> DriveSystem
+DriveSystem -- provides motion --> FloorSurface
+BrushSystem -- provides cleaning --> FloorSurface
+Sensors -- provides observations --> Planner
+Sensors -- reports status --> Navigator
+FloorSurface -- reports dirt level --> Sensors
+
+style Control Actuation Perception Environment fill:#777777,stroke:black
 ```
 
 
